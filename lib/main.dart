@@ -7,7 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final ApiService apiService =
-      ApiService('https://64e478cbc5556380291346a8.mockapi.io/api/mahasiswa');
+      ApiService('https://64e488dbc555638029136234.mockapi.io/');
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _FetchDataPageState extends State<FetchDataPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fetch Data'),
+        title: Text('Data Mahasiswa'),
       ),
       body: FutureBuilder<List<dynamic>>(
         future: _data,
@@ -57,13 +57,15 @@ class _FetchDataPageState extends State<FetchDataPage> {
             return ListView.builder(
               itemCount: data!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(data[index]['nim']),
-                  subtitle: Column(
+                return Padding(
+                  padding: const EdgeInsets.all(
+                      8.0), // Menambahkan padding keseluruhan
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Nama: ${data[index]['nama']}'),
-                      Text('Email: ${data[index]['email']}'),
+                      Text('${data[index]['nim']}'),
+                      SizedBox(height: 4), // Memberikan jarak vertical
+                      Text('${data[index]['nama']}')
                     ],
                   ),
                 );
